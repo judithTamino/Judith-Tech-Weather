@@ -80,5 +80,14 @@ namespace Judith_Tech_Weather.Dal
 
             SaveToDB(filename, JsonSerializer.Serialize(weatherList));
         }
+
+        public Dictionary<string, CityWeatherData> LoadCityWeatherTable(string filename)
+        {
+            Dictionary<string, CityWeatherData> weatherList = new Dictionary<string, CityWeatherData>();
+            string cityDataFromDB = GetWeatherDataFromDataBase(filename);
+            weatherList = JsonSerializer.Deserialize<Dictionary<string, CityWeatherData>>(cityDataFromDB);
+
+            return weatherList;
+        }
     }
 }

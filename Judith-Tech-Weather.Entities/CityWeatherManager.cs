@@ -13,8 +13,9 @@ namespace Judith_Tech_Weather.Entities
     public class CityWeatherManager
     {
         public bool IsRunning = true;
-        private const string lasttemp = @"C:\Users\user\Desktop\ציונט - טק קריירה\Weather app\Judith-Tech-Weather\Judith-Tech-Weather.Dal\DB\lasttemp.txt";
-        private const string cityWeatherHistory = @"C:\Users\user\Desktop\ציונט - טק קריירה\Weather app\Judith-Tech-Weather\Judith-Tech-Weather.Dal\DB\cityWeatherData.txt";
+        private const string lasttempFile = @"C:\Users\user\Desktop\ציונט - טק קריירה\Weather app\Judith-Tech-Weather\Judith-Tech-Weather.Dal\DB\lasttemp.txt";
+        private const string cityWeatherDataFile = @"C:\Users\user\Desktop\ציונט - טק קריירה\Weather app\Judith-Tech-Weather\Judith-Tech-Weather.Dal\DB\cityWeatherData.txt";
+        private Dictionary<string, CityWeatherData> cityWeatherTable = new Dictionary<string, CityWeatherData>(); // Main DB
         CityWeatherRequest CityWeatherRequest = new CityWeatherRequest();
         public Task StartAutoRequset(string cityname, int milliseconds)
         {
@@ -23,7 +24,7 @@ namespace Judith_Tech_Weather.Entities
                 {
                     Thread.Sleep(milliseconds);
                     string cityData = await CityWeatherRequest.GetCityData(cityname);
-                    CityWeatherRequest.SaveToDB(lasttemp, cityData);
+                    CityWeatherRequest.SaveToDB(lasttempFile, cityData);
                 }
             });
             return task;
@@ -38,7 +39,7 @@ namespace Judith_Tech_Weather.Entities
         {
             float[] temperature = new float[2];
 
-            string weatherDataStr = CityWeatherRequest.GetWeatherDataFromDataBase(lasttemp);
+            string weatherDataStr = CityWeatherRequest.GetWeatherDataFromDataBase(lasttempFile);
             var wearherData = CityWeatherRequest.DesriliationData(weatherDataStr); 
 
             temperature[0] = wearherData.current.temp_c;
@@ -49,7 +50,17 @@ namespace Judith_Tech_Weather.Entities
 
         public void AddToList(string cityname)
         {
-            CityWeatherRequest.SaveToWeatherCityData(cityname, cityWeatherHistory);
+            CityWeatherRequest.SaveToWeatherCityData(cityname, cityWeatherDataFile);
+        }
+
+        public void SaveToDB()
+        {
+            cityWeatherTable = CityWeatherRequest.LoadCityWeatherTable(cityWeatherDataFile);
+        }
+
+        public Dictionary<string, CityWeatherData> GetCityWeatherTable()
+        {
+            return cityWeatherTable;
         }
     }
 }

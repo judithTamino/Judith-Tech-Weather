@@ -38,10 +38,10 @@
             this.AddBtn = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.RefreshBtn = new System.Windows.Forms.Button();
             this.City = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TempC = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TempF = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.RefreshBtn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -132,6 +132,7 @@
             // 
             // dataGridView1
             // 
+            this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.City,
@@ -139,32 +140,39 @@
             this.TempF});
             this.dataGridView1.Location = new System.Drawing.Point(28, 288);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(343, 150);
+            this.dataGridView1.ReadOnly = true;
+            this.dataGridView1.Size = new System.Drawing.Size(644, 45);
             this.dataGridView1.TabIndex = 10;
-            // 
-            // City
-            // 
-            this.City.HeaderText = "City";
-            this.City.Name = "City";
-            // 
-            // TempC
-            // 
-            this.TempC.HeaderText = "Temperature C°";
-            this.TempC.Name = "TempC";
-            // 
-            // TempF
-            // 
-            this.TempF.HeaderText = "Temperature F°";
-            this.TempF.Name = "TempF";
             // 
             // RefreshBtn
             // 
-            this.RefreshBtn.Location = new System.Drawing.Point(387, 395);
+            this.RefreshBtn.Location = new System.Drawing.Point(678, 290);
             this.RefreshBtn.Name = "RefreshBtn";
             this.RefreshBtn.Size = new System.Drawing.Size(139, 43);
             this.RefreshBtn.TabIndex = 11;
             this.RefreshBtn.Text = "Refresh List";
             this.RefreshBtn.UseVisualStyleBackColor = true;
+            // 
+            // City
+            // 
+            this.City.HeaderText = "City";
+            this.City.Name = "City";
+            this.City.ReadOnly = true;
+            this.City.Width = 200;
+            // 
+            // TempC
+            // 
+            this.TempC.HeaderText = "Temperature C°";
+            this.TempC.Name = "TempC";
+            this.TempC.ReadOnly = true;
+            this.TempC.Width = 200;
+            // 
+            // TempF
+            // 
+            this.TempF.HeaderText = "Temperature F°";
+            this.TempF.Name = "TempF";
+            this.TempF.ReadOnly = true;
+            this.TempF.Width = 200;
             // 
             // Form1
             // 
@@ -202,10 +210,10 @@
         private System.Windows.Forms.Button AddBtn;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.Button RefreshBtn;
         private System.Windows.Forms.DataGridViewTextBoxColumn City;
         private System.Windows.Forms.DataGridViewTextBoxColumn TempC;
         private System.Windows.Forms.DataGridViewTextBoxColumn TempF;
-        private System.Windows.Forms.Button RefreshBtn;
     }
 }
 

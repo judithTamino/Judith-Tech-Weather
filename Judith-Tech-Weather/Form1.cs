@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 using Judith_Tech_Weather.Entities;
+using Judith_Tech_Weather.Model;
 
 namespace Judith_Tech_Weather
 {
@@ -19,6 +20,7 @@ namespace Judith_Tech_Weather
         {
             InitializeComponent();
             GetCurrentTempBtn.Enabled = false;
+            ShowCityNameAndTemp();
         }
 
         private void StartRequestBtn_Click(object sender, EventArgs e)
@@ -51,6 +53,21 @@ namespace Judith_Tech_Weather
         private void AddBtn_Click(object sender, EventArgs e)
         {
             CityWeatherManager.AddToList(textBox1.Text);
+            ShowCityNameAndTemp();
+        }
+
+        private void ShowCityNameAndTemp()
+        {
+            Dictionary<string, CityWeatherData> cityList = CityWeatherManager.GetCityWeatherTable();
+
+            foreach(CityWeatherData city in cityList.Values)
+            {
+                DataGridViewRow row = (DataGridViewRow)dataGridView1.Rows[0].Clone();
+                row.Cells[0].Value = city.location.name;
+                row.Cells[1].Value = $"{city.current.temp_c}C°";
+                row.Cells[2].Value = $"{city.current.temp_f}F°";
+                dataGridView1.Rows.Add(row);
+            }
         }
     }
 }

@@ -84,6 +84,10 @@
       <Project>{6c0db15c-d2a8-47ab-b4a7-b917dfe36747}</Project>
       <Name>Judith-Tech-Weather.Entities</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Judith-Tech-Weather.Model\Judith-Tech-Weather.Model.csproj">
+      <Project>{8d6e537d-b4aa-4d0c-8ff0-e280b7555634}</Project>
+      <Name>Judith-Tech-Weather.Model</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
