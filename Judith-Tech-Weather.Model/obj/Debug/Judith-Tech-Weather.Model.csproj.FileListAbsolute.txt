@@ -1,0 +1,6 @@
+C:\Users\user\Desktop\ציונט - טק קריירה\Weather app\Judith-Tech-Weather\Judith-Tech-Weather.Model\bin\Debug\Judith-Tech-Weather.Model.dll
+C:\Users\user\Desktop\ציונט - טק קריירה\Weather app\Judith-Tech-Weather\Judith-Tech-Weather.Model\bin\Debug\Judith-Tech-Weather.Model.pdb
+C:\Users\user\Desktop\ציונט - טק קריירה\Weather app\Judith-Tech-Weather\Judith-Tech-Weather.Model\obj\Debug\Judith-Tech-Weather.Model.csproj.AssemblyReference.cache
+C:\Users\user\Desktop\ציונט - טק קריירה\Weather app\Judith-Tech-Weather\Judith-Tech-Weather.Model\obj\Debug\Judith-Tech-Weather.Model.csproj.CoreCompileInputs.cache
+C:\Users\user\Desktop\ציונט - טק קריירה\Weather app\Judith-Tech-Weather\Judith-Tech-Weather.Model\obj\Debug\Judith-Tech-Weather.Model.dll
+C:\Users\user\Desktop\ציונט - טק קריירה\Weather app\Judith-Tech-Weather\Judith-Tech-Weather.Model\obj\Debug\Judith-Tech-Weather.Model.pdb

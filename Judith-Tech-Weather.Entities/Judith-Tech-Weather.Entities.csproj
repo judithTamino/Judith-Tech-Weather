@@ -41,8 +41,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="CityWeatherManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Judith-Tech-Weather.Dal\Judith-Tech-Weather.Dal.csproj">
+      <Project>{1a321cda-4003-448d-a1a6-700fb0cf989c}</Project>
+      <Name>Judith-Tech-Weather.Dal</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Judith-Tech-Weather.Model\Judith-Tech-Weather.Model.csproj">
+      <Project>{8d6e537d-b4aa-4d0c-8ff0-e280b7555634}</Project>
+      <Name>Judith-Tech-Weather.Model</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
