@@ -14,7 +14,8 @@ namespace Judith_Tech_Weather.Dal
 {
     public class CityWeatherRequest
     {
-        private const string lasttemp = @"C:\Users\user\Desktop\ציונט - טק קריירה\Weather app\Judith-Tech-Weather\Judith-Tech-Weather.Dal\DB\lasttemp.txt";
+        //private const string lasttemp = @"C:\Users\user\Desktop\ציונט - טק קריירה\Weather app\Judith-Tech-Weather\Judith-Tech-Weather.Dal\DB\lasttemp.txt";
+        //private const string cityWeatherHistory = @"C:\Users\user\Desktop\ציונט - טק קריירה\Weather app\Judith-Tech-Weather\Judith-Tech-Weather.Dal\DB\cityWeatherData.txt";
         public async Task<string> GetCityData(string cityname)
         {
             string weather_data = "";
@@ -36,17 +37,48 @@ namespace Judith_Tech_Weather.Dal
             return weather_data;
         }
 
-        public CityWeatherData GetWeatherDataFromLasttemp()
+        public CityWeatherData DesriliationData(string weatherData)
         {
-            string data = File.ReadAllText(lasttemp);
-            CityWeatherData weatherData = JsonSerializer.Deserialize<CityWeatherData>(data);
-            
-            return weatherData;
+            return JsonSerializer.Deserialize<CityWeatherData>(weatherData);
         }
 
-        public void SaveToLasttemp(string cityData)
+        public string GetWeatherDataFromDataBase(string filename)
         {
-            File.WriteAllText(lasttemp, cityData);
+            return File.ReadAllText(filename);
+        }
+
+        public void SaveToDB(string filename, string data)
+        {
+            File.WriteAllText(filename, data);
+        }
+
+        public async void SaveToWeatherCityData(string cityname, string filename)
+        {
+            Dictionary<string, CityWeatherData> weatherList = new Dictionary<string, CityWeatherData>();
+
+            string cityDataFromApi = await GetCityData(cityname);
+            string cityDataFromDB = GetWeatherDataFromDataBase(filename);
+           
+            var cityWeatherData = DesriliationData(cityDataFromApi);
+            string name = cityWeatherData.location.name;
+
+            //if DB is empty add city to DB
+            if (cityDataFromDB == "")
+                weatherList.Add(name, cityWeatherData);
+            else
+            {
+                 
+                // convert data from DB
+                weatherList = JsonSerializer.Deserialize<Dictionary<string, CityWeatherData>>(cityDataFromDB);
+                if(weatherList.ContainsKey(name))
+                {
+                    weatherList[name].current.temp_c = cityWeatherData.current.temp_c;
+                    weatherList[name].current.temp_f = cityWeatherData.current.temp_f;
+                }
+                else weatherList.Add(name, cityWeatherData);    
+            }
+
+            SaveToDB(filename, JsonSerializer.Serialize(weatherList));
         }
     }
 }

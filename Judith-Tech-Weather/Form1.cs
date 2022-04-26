@@ -47,5 +47,10 @@ namespace Judith_Tech_Weather
             CityTempResultC.Text = $"{temperature[0]}C°";
             CityTempResultsF.Text = $"{temperature[1]}F°";
         }
+
+        private void AddBtn_Click(object sender, EventArgs e)
+        {
+            CityWeatherManager.AddToList(textBox1.Text);
+        }
     }
 }

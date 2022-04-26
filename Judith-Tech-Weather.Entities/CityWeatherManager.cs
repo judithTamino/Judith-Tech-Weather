@@ -13,6 +13,8 @@ namespace Judith_Tech_Weather.Entities
     public class CityWeatherManager
     {
         public bool IsRunning = true;
+        private const string lasttemp = @"C:\Users\user\Desktop\ציונט - טק קריירה\Weather app\Judith-Tech-Weather\Judith-Tech-Weather.Dal\DB\lasttemp.txt";
+        private const string cityWeatherHistory = @"C:\Users\user\Desktop\ציונט - טק קריירה\Weather app\Judith-Tech-Weather\Judith-Tech-Weather.Dal\DB\cityWeatherData.txt";
         CityWeatherRequest CityWeatherRequest = new CityWeatherRequest();
         public Task StartAutoRequset(string cityname, int milliseconds)
         {
@@ -21,7 +23,7 @@ namespace Judith_Tech_Weather.Entities
                 {
                     Thread.Sleep(milliseconds);
                     string cityData = await CityWeatherRequest.GetCityData(cityname);
-                    CityWeatherRequest.SaveToLasttemp(cityData);
+                    CityWeatherRequest.SaveToDB(lasttemp, cityData);
                 }
             });
             return task;
@@ -36,11 +38,18 @@ namespace Judith_Tech_Weather.Entities
         {
             float[] temperature = new float[2];
 
-            var wearherData = CityWeatherRequest.GetWeatherDataFromLasttemp();
+            string weatherDataStr = CityWeatherRequest.GetWeatherDataFromDataBase(lasttemp);
+            var wearherData = CityWeatherRequest.DesriliationData(weatherDataStr); 
+
             temperature[0] = wearherData.current.temp_c;
             temperature[1] = wearherData.current.temp_f;
 
             return temperature;
+        }
+
+        public void AddToList(string cityname)
+        {
+            CityWeatherRequest.SaveToWeatherCityData(cityname, cityWeatherHistory);
         }
     }
 }
