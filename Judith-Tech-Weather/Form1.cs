@@ -20,6 +20,8 @@ namespace Judith_Tech_Weather
         {
             InitializeComponent();
             GetCurrentTempBtn.Enabled = false;
+
+            CityWeatherManager.SaveToDB();
             ShowCityNameAndTemp();
         }
 
@@ -56,11 +58,17 @@ namespace Judith_Tech_Weather
             ShowCityNameAndTemp();
         }
 
+        private void RefreshBtn_Click(object sender, EventArgs e)
+        {
+            CityWeatherManager.UpdateCityTemp();
+        }
+
         private void ShowCityNameAndTemp()
         {
             Dictionary<string, CityWeatherData> cityList = CityWeatherManager.GetCityWeatherTable();
-
-            foreach(CityWeatherData city in cityList.Values)
+            dataGridView1.Rows.Clear();
+            
+            foreach (CityWeatherData city in cityList.Values)
             {
                 DataGridViewRow row = (DataGridViewRow)dataGridView1.Rows[0].Clone();
                 row.Cells[0].Value = city.location.name;

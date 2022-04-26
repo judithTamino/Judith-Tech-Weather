@@ -14,8 +14,6 @@ namespace Judith_Tech_Weather.Dal
 {
     public class CityWeatherRequest
     {
-        //private const string lasttemp = @"C:\Users\user\Desktop\ציונט - טק קריירה\Weather app\Judith-Tech-Weather\Judith-Tech-Weather.Dal\DB\lasttemp.txt";
-        //private const string cityWeatherHistory = @"C:\Users\user\Desktop\ציונט - טק קריירה\Weather app\Judith-Tech-Weather\Judith-Tech-Weather.Dal\DB\cityWeatherData.txt";
         public async Task<string> GetCityData(string cityname)
         {
             string weather_data = "";
@@ -85,7 +83,8 @@ namespace Judith_Tech_Weather.Dal
         {
             Dictionary<string, CityWeatherData> weatherList = new Dictionary<string, CityWeatherData>();
             string cityDataFromDB = GetWeatherDataFromDataBase(filename);
-            weatherList = JsonSerializer.Deserialize<Dictionary<string, CityWeatherData>>(cityDataFromDB);
+            if(cityDataFromDB != "")
+                weatherList = JsonSerializer.Deserialize<Dictionary<string, CityWeatherData>>(cityDataFromDB);
 
             return weatherList;
         }

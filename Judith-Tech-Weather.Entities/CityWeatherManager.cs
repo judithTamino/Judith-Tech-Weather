@@ -62,5 +62,13 @@ namespace Judith_Tech_Weather.Entities
         {
             return cityWeatherTable;
         }
+
+        public void UpdateCityTemp()
+        {
+            foreach (CityWeatherData city in cityWeatherTable.Values)
+               CityWeatherRequest.SaveToWeatherCityData(city.location.name, cityWeatherDataFile);
+
+            SaveToDB();
+        }
     }
 }

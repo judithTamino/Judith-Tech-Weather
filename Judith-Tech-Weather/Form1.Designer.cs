@@ -141,17 +141,18 @@
             this.dataGridView1.Location = new System.Drawing.Point(28, 288);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.Size = new System.Drawing.Size(644, 45);
+            this.dataGridView1.Size = new System.Drawing.Size(644, 171);
             this.dataGridView1.TabIndex = 10;
             // 
             // RefreshBtn
             // 
-            this.RefreshBtn.Location = new System.Drawing.Point(678, 290);
+            this.RefreshBtn.Location = new System.Drawing.Point(702, 416);
             this.RefreshBtn.Name = "RefreshBtn";
             this.RefreshBtn.Size = new System.Drawing.Size(139, 43);
             this.RefreshBtn.TabIndex = 11;
             this.RefreshBtn.Text = "Refresh List";
             this.RefreshBtn.UseVisualStyleBackColor = true;
+            this.RefreshBtn.Click += new System.EventHandler(this.RefreshBtn_Click);
             // 
             // City
             // 
